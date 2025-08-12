@@ -17,7 +17,11 @@ public class LionParamTest {
         this.expected = expected;
     }
 
+<<<<<<< HEAD
     @Parameterized.Parameters
+=======
+    @Parameterized.Parameters(name = "sex={0}, hasMane={1}")
+>>>>>>> e6b74b9 (fix: правки по замечаниям ревьюера)
     public static Object[][] getLionData() {
         return new Object[][]{
                 {"Самец", true},
