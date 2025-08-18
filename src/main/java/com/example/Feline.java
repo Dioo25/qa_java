@@ -1,21 +1,15 @@
 package com.example;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class Feline implements Predator {
-
-    @Override
-    public List<String> eatMeat() throws Exception {
-        return getFood("Хищник");
+public class Feline {
+    public List<String> eatMeat() {
+        return Arrays.asList("Животные", "Птицы", "Рыба");
     }
 
-    public List<String> getFood(String animalKind) throws Exception {
-        if ("Хищник".equals(animalKind)) {
-            return List.of("Животные", "Птицы", "Рыба");
-        } else if ("Травоядное".equals(animalKind)) {
-            return List.of("Трава", "Различные растения");
-        }
-        throw new Exception("Неизвестный вид животного: " + animalKind);
+    public String getFamily() {
+        return "Кошачьи";
     }
 
     public int getKittens() {

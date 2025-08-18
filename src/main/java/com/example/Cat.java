@@ -3,7 +3,6 @@ package com.example;
 import java.util.List;
 
 public class Cat {
-
     private final Feline feline;
 
     public Cat(Feline feline) {

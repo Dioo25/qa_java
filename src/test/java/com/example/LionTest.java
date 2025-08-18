@@ -1,52 +1,65 @@
 package com.example;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-public class LionTest {
+class LionTest {
 
     private Feline feline;
-    private Lion lion;
 
-    @Before
-    public void setUp() throws Exception {
-        // создаём мок Feline
-        feline = Mockito.mock(Feline.class);
-
-        // настраиваем поведение: при вызове eatMeat() вернуть ["Мясо"]
-        Mockito.when(feline.eatMeat()).thenReturn(Arrays.asList("Мясо"));
-
-        // создаём льва с этим мок-объектом
-        lion = new Lion("Самец", feline);
+    @BeforeEach
+    void setUp() {
+        feline = mock(Feline.class);
     }
 
     @Test
-    public void getFoodDelegatesToFeline() throws Exception {
-        List<String> expected = Arrays.asList("Мясо");
-        assertEquals("Метод getFood должен возвращать список еды из Feline", expected, lion.getFood());
+    @DisplayName("Проверка, что у самца есть грива")
+    void maleLionHasMane() throws Exception {
+        Lion lion = new Lion("Самец", feline);
+        assertTrue(lion.doesHaveMane());
     }
 
     @Test
-    public void doesHaveManeReturnTrueForMale() throws Exception {
-        Lion maleLion = new Lion("Самец", feline);
-        assertEquals("У самца должна быть грива", true, maleLion.doesHaveMane());
+    @DisplayName("Проверка, что у самки нет гривы")
+    void femaleLionDoesNotHaveMane() throws Exception {
+        Lion lion = new Lion("Самка", feline);
+        assertFalse(lion.doesHaveMane());
     }
 
     @Test
-    public void doesHaveManeReturnFalseForFemale() throws Exception {
-        Lion femaleLion = new Lion("Самка", feline);
-        assertEquals("У самки не должно быть гривы", false, femaleLion.doesHaveMane());
+    @DisplayName("Проверка выброса исключения при некорректном поле")
+    void invalidSexThrowsException() {
+        Exception exception = assertThrows(Exception.class, () -> new Lion("Неизвестно", feline));
+        assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
 
     @Test
-    public void getKittensDelegatesToFeline() throws Exception {
-        Mockito.when(feline.getKittens()).thenReturn(1);
-        assertEquals(1, lion.getKittens());
+    @DisplayName("Проверка вызова метода getFood у Feline")
+    void getFoodCallsEatMeat() throws Exception {
+        Lion lion = new Lion("Самец", feline);
+        when(feline.eatMeat()).thenReturn(List.of("Мясо"));
+
+        List<String> food = lion.getFood();
+
+        assertEquals(List.of("Мясо"), food);
+        verify(feline, times(1)).eatMeat();
+    }
+
+    @Test
+    @DisplayName("Проверка делегирования getKittens в Feline")
+    void getKittensDelegatesToFeline() throws Exception {
+        Lion lion = new Lion("Самка", feline);
+        when(feline.getKittens()).thenReturn(3);
+
+        int kittens = lion.getKittens();
+
+        assertEquals(3, kittens);
+        verify(feline, times(1)).getKittens();
     }
 }

@@ -1,36 +1,25 @@
 package com.example;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
-import java.util.Arrays;
-import java.util.Collection;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-@RunWith(Parameterized.class)
-public class LionParamTest {
+class LionParamTest {
 
-    private final String sex;
-    private final boolean expectedHasMane;
+    @ParameterizedTest
+    @ValueSource(strings = {"Самец", "Самка"})
+    void lionGetFoodWorksForBothSexes(String sex) throws Exception {
+        Feline feline = mock(Feline.class);
+        when(feline.eatMeat()).thenReturn(List.of("Мясо"));
 
-    public LionParamTest(String sex, boolean expectedHasMane) {
-        this.sex = sex;
-        this.expectedHasMane = expectedHasMane;
-    }
+        Lion lion = new Lion(sex, feline);
+        List<String> food = lion.getFood();
 
-    @Parameterized.Parameters(name = "{index}: sex={0}, hasMane={1}")
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {"Самец", true},
-                {"Самка", false}
-        });
-    }
-
-    @Test
-    public void testLionMane() throws Exception {
-        Lion lion = new Lion(sex, new Feline());
-        assertEquals(expectedHasMane, lion.doesHaveMane());
+        assertEquals(List.of("Мясо"), food);
+        verify(feline, times(1)).eatMeat();
     }
 }
