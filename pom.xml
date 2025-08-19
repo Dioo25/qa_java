@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+<<<<<<< HEAD
     <groupId>com.example</groupId>
     <artifactId>scooter-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -11,6 +12,22 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jacoco.destfile>C:/tmp/jacoco.exec</jacoco.destfile>
+=======
+
+    <groupId>com.example</groupId>
+    <artifactId>scooter-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Кодировка проекта -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
+        <mockito.version>5.5.0</mockito.version>
+        <selenium.version>4.21.0</selenium.version>
+>>>>>>> eb2049b (Add cleaned project)
     </properties>
 
     <dependencies>
@@ -18,7 +35,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+<<<<<<< HEAD
             <version>5.10.0</version>
+=======
+            <version>${junit.jupiter.version}</version>
+>>>>>>> eb2049b (Add cleaned project)
             <scope>test</scope>
         </dependency>
 
@@ -26,6 +47,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+<<<<<<< HEAD
             <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
@@ -35,11 +57,23 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.21.0</version>
+=======
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Selenium WebDriver -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+>>>>>>> eb2049b (Add cleaned project)
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+<<<<<<< HEAD
             <!-- Compiler Plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,12 +82,30 @@
 
             <!-- Surefire -->
             <plugin>
+=======
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Surefire Plugin для запуска JUnit 5 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+>>>>>>> eb2049b (Add cleaned project)
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
 
             <!-- Jacoco -->
             <plugin>
@@ -85,3 +137,9 @@
         </plugins>
     </build>
 </project>
+=======
+        </plugins>
+    </build>
+</project>
+>>>>>>> eb2049b (Add cleaned project)
+

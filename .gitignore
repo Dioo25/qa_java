@@ -7,6 +7,7 @@ target/*
 *.iml
 *.ipr
 *.iws
+out/
 
 # --- VS Code ---
 .vscode/
@@ -14,5 +15,3 @@ target/*
 # --- OS files ---
 .DS_Store
 Thumbs.db
- 
- 
