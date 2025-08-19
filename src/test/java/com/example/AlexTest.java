@@ -49,3 +49,5 @@ class AlexTest {
         assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
     }
 }
+
+//sp6

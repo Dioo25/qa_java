@@ -1,13 +1,14 @@
 # --- Maven ---
-target/*
-!target/site/
+/target/*
+!/target/site/
+/target/site/*~
+!/target/site/*/
 
 # --- IntelliJ IDEA ---
 .idea/
 *.iml
 *.ipr
 *.iws
-out/
 
 # --- VS Code ---
 .vscode/

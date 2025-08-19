@@ -9,5 +9,5 @@ public interface Predator {
 
 
 
-//SP6
+//SP6 ver 2
 
