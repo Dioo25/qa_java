@@ -1,18 +1,8 @@
-# --- Maven ---
-/target/*
+# Maven
+/target/
 !/target/site/
-/target/site/*~
-!/target/site/*/
+!/target/site/**
 
-# --- IntelliJ IDEA ---
+# IntelliJ IDEA
 .idea/
 *.iml
-*.ipr
-*.iws
-
-# --- VS Code ---
-.vscode/
-
-# --- OS files ---
-.DS_Store
-Thumbs.db
