@@ -1,30 +1,25 @@
-package com.example;
+package com.example.animals;
 
 import java.util.List;
 
 public class Lion {
+
     private final String sex;
     private final Feline feline;
 
-    public Lion(String sex, Feline feline) throws Exception {
-        if (!"Самец".equalsIgnoreCase(sex) && !"Самка".equalsIgnoreCase(sex)) {
-            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
+    public Lion(String sex, Feline feline) {
+        if (!sex.equals("Самец") && !sex.equals("Самка")) {
+            throw new IllegalArgumentException("Некорректный пол льва");
         }
         this.sex = sex;
         this.feline = feline;
     }
 
-    public boolean doesHaveMane() {
-        return "Самец".equalsIgnoreCase(sex);
-    }
-
     public List<String> getFood() throws Exception {
-        return feline.eatMeat();
+        return feline.getFood("Хищник");
     }
 
-    public int getKittens() {
-        return feline.getKittens();
+    public String getSex() {
+        return sex;
     }
 }
-
-

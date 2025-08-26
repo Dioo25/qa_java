@@ -1,6 +1,5 @@
-package com.example;
+package com.example.animals;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,32 +8,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FelineTest {
 
+    private final Feline feline = new Feline();
+
     @Test
-    @DisplayName("eatMeat возвращает список хищной еды")
-    void eatMeatReturnsPredatorFood() throws Exception {
-        Feline feline = new Feline();
-        List<String> food = feline.eatMeat();
-        assertTrue(food.contains("Животные") || food.contains("Птицы") || food.contains("Рыба"));
+    void getFoodCatTest() throws Exception {
+        List<String> food = feline.getFood("кошка");
+        assertEquals(List.of("молоко", "рыба", "корм"), food);
     }
 
     @Test
-    @DisplayName("getFamily возвращает 'Кошачьи'")
-    void getFamilyReturnsFeline() {
-        Feline feline = new Feline();
-        assertEquals("Кошачьи", feline.getFamily());
+    void getFoodLionTest() throws Exception {
+        List<String> food = feline.getFood("лев");
+        assertEquals(List.of("мясо", "птица"), food);
     }
 
     @Test
-    @DisplayName("getKittens без параметров возвращает 1")
-    void getKittensWithoutParametersReturnsOne() {
-        Feline feline = new Feline();
+    void getKittensDefaultTest() {
         assertEquals(1, feline.getKittens());
     }
 
     @Test
-    @DisplayName("getKittens с параметром возвращает переданное значение")
-    void getKittensWithParameterReturnsValue() {
-        Feline feline = new Feline();
+    void getKittensParameterizedTest() {
         assertEquals(5, feline.getKittens(5));
+    }
+
+    @Test
+    void getFoodExceptionTest() {
+        Exception exception = assertThrows(Exception.class, () -> feline.getFood("тигр"));
+        assertEquals("Неизвестное животное", exception.getMessage());
     }
 }

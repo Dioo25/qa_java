@@ -1,4 +1,4 @@
-package com.example;
+package com.example.animals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,22 +6,13 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 class AlexTest {
 
     @Test
-    @DisplayName("Проверка, что Алекс — лев самец с гривой")
-    void alexIsMaleLionWithMane() throws Exception {
-        Feline feline = mock(Feline.class);
-        Alex alex = new Alex(feline);
-
-        assertTrue(alex.doesHaveMane());
-    }
-
-    @Test
     @DisplayName("Проверка, что у Алекса нет котят")
-    void alexHasNoKittens() throws Exception {
+    void alexHasNoKittens() {
         Feline feline = mock(Feline.class);
         Alex alex = new Alex(feline);
 
@@ -30,22 +21,11 @@ class AlexTest {
 
     @Test
     @DisplayName("Проверка списка друзей Алекса")
-    void alexHasFriends() throws Exception {
+    void alexHasFriends() {
         Feline feline = mock(Feline.class);
         Alex alex = new Alex(feline);
 
         List<String> friends = alex.getFriends();
-        assertTrue(friends.contains("Марти"));
-        assertTrue(friends.contains("Глория"));
-        assertTrue(friends.contains("Мелман"));
-    }
-
-    @Test
-    @DisplayName("Проверка места проживания Алекса")
-    void alexPlaceOfLivingIsZoo() throws Exception {
-        Feline feline = mock(Feline.class);
-        Alex alex = new Alex(feline);
-
-        assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
+        assertEquals(List.of("Марти", "Мелман", "Глория"), friends);
     }
 }

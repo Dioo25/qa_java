@@ -1,24 +1,20 @@
-package com.example;
+package com.example.animals;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class Alex extends Lion {
+public class Alex {
 
-    public Alex(Feline feline) throws Exception {
-        super("Самец", feline);
+    private final Feline feline;
+
+    public Alex(Feline feline) {
+        this.feline = feline;
+    }
+
+    public int getKittens() {
+        return 0;
     }
 
     public List<String> getFriends() {
-        return Arrays.asList("Марти", "Глория", "Мелман");
-    }
-
-    public String getPlaceOfLiving() {
-        return "Нью-Йоркский зоопарк";
-    }
-
-    @Override
-    public int getKittens() {
-        return 0;
+        return List.of("Марти", "Мелман", "Глория");
     }
 }
