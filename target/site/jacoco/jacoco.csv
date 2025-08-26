@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+scooter-tests,com.example.animals,Lion,0,30,0,4,0,8,0,5,0,3
+scooter-tests,com.example.animals,Feline,5,30,0,3,1,7,1,6,1,4
+scooter-tests,com.example.animals,Cat,0,17,0,0,0,6,0,4,0,4
+scooter-tests,com.example.animals,Alex,0,13,0,0,0,5,0,3,0,3
